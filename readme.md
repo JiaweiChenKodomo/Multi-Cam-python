@@ -85,7 +85,7 @@ The directory should be changed according to the directory of the project.
 See `./etc/rc.local` in the project directory for example. ` /etc/rc.local` needs to be set to execuatble:
 `sudo chmod -x /etc/rc.local`.
 ## Run the client code to control the cameras remotely.
-To trigger camera events, run the 'client2.py' and put in instructions as prompted on any machine. In 'client2.py', the IP and the names of the servers need to be specified. 
+To trigger camera events, run the `client2.py` and put in instructions as prompted on any machine. In `client2.py`, the IP and the names of the servers need to be specified. 
 ***** 
 
 # How to use the sample app by Canon
