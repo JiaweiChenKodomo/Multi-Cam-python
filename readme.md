@@ -65,7 +65,7 @@
  `gsettings set org.gnome.desktop.media-handling automount false`
 To enable it again use the following:
  `gsettings set org.gnome.desktop.media-handling automount true`
-This works for Jetson Nano. The bottom issue is likely `gvfs-gphoto2-volume-monitor` holding up the camera storage. On Raspberry Pi OS, one would need to kill `gvfs-gphoto2-volume-monitor` before connecting to the camera.
+This works for Jetson Nano. The bottom issue is likely `gvfs-gphoto2-volume-monitor` holding up the camera storage. On Raspbian OS, one would need to kill `gvfs-gphoto2-volume-monitor` before connecting to the camera.
 
 ## Automatically start the server on start up.
 Run the startup script by adding the following line to `/etc/rc.local`:
