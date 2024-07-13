@@ -65,15 +65,15 @@
  `gsettings set org.gnome.desktop.media-handling automount false`
 To enable it again use the following:
  `gsettings set org.gnome.desktop.media-handling automount true`
-This works for Jetson Nano. The bottom issue is likely `gvfs-gphoto2-volume-monitor` holding up the camera storage. On Raspbian OS, one would need to kill `gvfs-gphoto2-volume-monitor` before connecting to the camera.
+This works for Jetson Nano. The bottom issue is likely `gvfs-gphoto2-volume-monitor` holding up the camera storage. On Raspbian OS, one would need to kill `gvfs-gphoto2-volume-monitor` before connecting to the camera. This is done automatically in the `server3.py` code.
 
 ## Automatically start the server on start up.
-Run the startup script by adding the following line to `/etc/rc.local`:
+1. On the Raspberry Pi (etc.) controling the camera (i.e., the server), run the startup script by adding the following line to `/etc/rc.local`:
  `sudo bash /home/peer/Desktop/MultiCamCui/Documents/startup.sh &`
 The directory should be changed according to the directory of the project. 
 See `./etc/rc.local` in the project directory for example. ` /etc/rc.local` needs to be set to execuatble:
 `sudo chmod -x /etc/rc.local`.
-
+2. To trigger camera events, run the 'client2.py' and put in instructions as prompted on any machine. In 'client2.py', the IP and the names of the servers needs manual input. 
 *****
 
 
