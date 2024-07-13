@@ -68,8 +68,11 @@ To enable it again use the following:
 This works for Jetson Nano. The bottom issue is likely `gvfs-gphoto2-volume-monitor` holding up the camera storage. On Raspberry Pi OS, one would need to kill `gvfs-gphoto2-volume-monitor` before connecting to the camera.
 
 ## Automatically start the server on start up.
-Run the startup script by adding the following line to /etc/rc.local:
+Run the startup script by adding the following line to `/etc/rc.local`:
  `sudo bash /home/peer/Desktop/MultiCamCui/Documents/startup.sh &`
+The directory should be changed according to the directory of the project. 
+See `./etc/rc.local` in the project directory for example. ` /etc/rc.local` needs to be set to execuatble:
+`sudo chmod -x /etc/rc.local`.
 
 *****
 
