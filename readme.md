@@ -1,6 +1,6 @@
 *****
 
-# for Windows
+# Compile C++ program for Windows by Canon
 ## Operating environment
  We recommend using this sample with "windows terminal" because it uses ESC character (\033) for screen control.
 
@@ -9,12 +9,12 @@
  Build it as a cmake project.
 
 ## Build Method
- 1.Unzip MultiCamCui.zip.
+ 1.Download the package. Note that the EDSDK in the current directory is for Linux. Replace it with EDSDK for Windows, which can be downloaded from Canon's developer website.
 
  2.Start Visual Studio.
 
  3.Click "Open a local folder,"
-   Select the folder created by unzipping MultiCamCui.zip.
+   Select the package folder.
 
  4.Choose between x64-Debug or x64-Release
    If you want to run the sample app on another PC rather than a build machine, you must build it with x 64 -Release.
@@ -44,10 +44,10 @@
 
 
 ## Build Method
- 1.Unzip MultiCamCui.zip.
+ 1.Download the package.
 
- 2.Change the folder created by unzipping MultiCamCui.zip.
-   cd MultiCamCui
+ 2.Go to the folder.
+   cd Multi-Cam-python
 
  3.Edit CMakeLists.txt
   If you are building on the arm64 architecture, change line 61 of "CMakeLists.txt" to:
