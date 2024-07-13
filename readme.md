@@ -2,7 +2,7 @@
 
 # Compile C++ program for Windows by Canon
 ## Operating environment
- We recommend using this sample with "windows terminal" because it uses ESC character (\033) for screen control.
+ Canon recommends using this sample with "windows terminal" because it uses ESC character (\033) for screen control.
 
 ## Install build tools
  Visual Studio 2019 version 16.5 or later
@@ -26,7 +26,7 @@
 
 # for Linux
 ## Operating environment
- We recommend using this sample with
+ Canon recommends using this sample with
   "Raspberry Pi 4/Raspberry Pi OS 32bit" and "Jetson nano/ubuntu18.04 64bit."
 
 ## Install build tools
@@ -60,12 +60,14 @@
  5.Build
    make
 
-## Trouble shooting
+## Trouble shooting tips
  1. If the camera can't be found, it is likely because Nautilus is holding the USB device. Disable Nautilus automount.
  `gsettings set org.gnome.desktop.media-handling automount false`
 To enable it again use the following:
  `gsettings set org.gnome.desktop.media-handling automount true`
-This works for Jetson Nano. The bottom issue is likely `gvfs-gphoto2-volume-monitor` holding up the camera storage. On Raspbian OS, one would need to kill `gvfs-gphoto2-volume-monitor` before connecting to the camera. This is done automatically in the `server3.py` code.
+This works for Jetson Nano.
+
+The real issue is likely `gvfs-gphoto2-volume-monitor` holding up the camera storage. On Raspbian OS, one would need to kill `gvfs-gphoto2-volume-monitor` before connecting to the camera. This is done automatically in the `server3.py` code.
 
 ## Automatically start the server on start up.
 1. On the Raspberry Pi (etc.) controling the camera (i.e., the server), run the startup script by adding the following line to `/etc/rc.local`:
