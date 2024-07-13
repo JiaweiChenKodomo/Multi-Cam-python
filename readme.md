@@ -1,11 +1,12 @@
 # What it does and what you need
-This repo contains the Python scripts to set up servers and clients to control Canon cameras remotely. A number of cameras can be connected to computers running the server.The client controls the cameras by sending instructions to the servers. 
+This repo contains the Python scripts to set up servers and clients to control Canon cameras remotely. A number of cameras can be connected to computers running the server. The client controls the cameras by sending instructions to the servers. This code is used in our lab to control multiple cameras during tests. 
 
 What you need are:
 1. A Canon camera.
 2. A computer running the server code, connected to the Canon camera. Current server code assumes that one server controls one camera, which is the case in our lab where you need to control cameras over a large area. With a few modifications to the server code and client code, one server can control more than one camera.
 3. A computer (usu. a seperate one from the server) running the client code to control all servers. 
-4. USB and power cables. 
+4. USB and power cables.
+5. Access to the correct version of Canon EDSDK. 
 *****
 
 # Compile C++ program for Windows by Canon
