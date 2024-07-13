@@ -1,3 +1,11 @@
+# What it does and what you need
+This repo contains the Python scripts to set up servers and clients to control Canon cameras remotely. A number of cameras can be connected to computers running the server.The client controls the cameras by sending instructions to the servers. 
+
+What you need are:
+1. A Canon camera.
+2. A computer running the server code, connected to the Canon camera. Current server code assumes that one server controls one camera, which is the case in our lab where you need to control cameras over a large area. With a few modifications to the server code and client code, one server can control more than one camera.
+3. A computer (usu. a seperate one from the server) running the client code to control all servers. 
+4. USB and power cables. 
 *****
 
 # Compile C++ program for Windows by Canon
@@ -70,14 +78,14 @@ This works for Jetson Nano.
 The real issue is likely `gvfs-gphoto2-volume-monitor` holding up the camera storage. On Raspbian OS, one would need to kill `gvfs-gphoto2-volume-monitor` before connecting to the camera. This is done automatically in the `server3.py` code.
 
 ## Automatically start the server on start up.
-1. On the Raspberry Pi (etc.) controling the camera (i.e., the server), run the startup script by adding the following line to `/etc/rc.local`:
+On the Raspberry Pi (etc.) controling the camera (i.e., the server), run the startup script by adding the following line to `/etc/rc.local`:
  `sudo bash /home/peer/Desktop/MultiCamCui/Documents/startup.sh &`
 The directory should be changed according to the directory of the project. 
 See `./etc/rc.local` in the project directory for example. ` /etc/rc.local` needs to be set to execuatble:
 `sudo chmod -x /etc/rc.local`.
-2. To trigger camera events, run the 'client2.py' and put in instructions as prompted on any machine. In 'client2.py', the IP and the names of the servers needs manual input. 
-*****
-
+## Run the client code to control the cameras remotely.
+To trigger camera events, run the 'client2.py' and put in instructions as prompted on any machine. In 'client2.py', the IP and the names of the servers need to be specified. 
+***** 
 
 # How to use the sample app by Canon
  1.Connect the camera to your PC with a USB cable.
