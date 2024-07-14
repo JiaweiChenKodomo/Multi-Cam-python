@@ -1,20 +1,29 @@
+# What it does and what you need
+This repo contains the Python scripts to set up servers and clients to control Canon cameras remotely. A number of cameras can be connected to computers running the server. The client controls the cameras by sending instructions to the servers. This code is used in our lab to control multiple cameras during tests. 
+
+What you need are:
+1. A Canon camera.
+2. A computer running the server code, connected to the Canon camera. Current server code assumes that one server controls one camera, which is the case in our lab where you need to control cameras over a large area. With a few modifications to the server code and client code, one server can control more than one camera.
+3. A computer (usu. a seperate one from the server) running the client code to control all servers. 
+4. USB and power cables.
+5. Access to the correct version of Canon EDSDK. 
 *****
 
-# for Windows
+# Compile C++ program for Windows by Canon
 ## Operating environment
- We recommend using this sample with "windows terminal" because it uses ESC character (\033) for screen control.
+ Canon recommends using this sample with "windows terminal" because it uses ESC character (\033) for screen control.
 
 ## Install build tools
  Visual Studio 2019 version 16.5 or later
  Build it as a cmake project.
 
 ## Build Method
- 1.Unzip MultiCamCui.zip.
+ 1.Download the package. Note that the EDSDK in the current directory is for Linux. Replace it with EDSDK for Windows, which can be downloaded from Canon's developer website.
 
  2.Start Visual Studio.
 
  3.Click "Open a local folder,"
-   Select the folder created by unzipping MultiCamCui.zip.
+   Select the package folder.
 
  4.Choose between x64-Debug or x64-Release
    If you want to run the sample app on another PC rather than a build machine, you must build it with x 64 -Release.
@@ -26,7 +35,7 @@
 
 # for Linux
 ## Operating environment
- We recommend using this sample with
+ Canon recommends using this sample with
   "Raspberry Pi 4/Raspberry Pi OS 32bit" and "Jetson nano/ubuntu18.04 64bit."
 
 ## Install build tools
@@ -44,10 +53,10 @@
 
 
 ## Build Method
- 1.Unzip MultiCamCui.zip.
+ 1.Download the package.
 
- 2.Change the folder created by unzipping MultiCamCui.zip.
-   cd MultiCamCui
+ 2.Go to the folder.
+   cd Multi-Cam-python
 
  3.Edit CMakeLists.txt
   If you are building on the arm64 architecture, change line 61 of "CMakeLists.txt" to:
@@ -60,22 +69,24 @@
  5.Build
    make
 
-## Trouble shooting
+## Trouble shooting tips
  1. If the camera can't be found, it is likely because Nautilus is holding the USB device. Disable Nautilus automount.
  `gsettings set org.gnome.desktop.media-handling automount false`
 To enable it again use the following:
  `gsettings set org.gnome.desktop.media-handling automount true`
-This works for Jetson Nano. The bottom issue is likely `gvfs-gphoto2-volume-monitor` holding up the camera storage. On Raspberry Pi OS, one would need to kill `gvfs-gphoto2-volume-monitor` before connecting to the camera.
+This works for Jetson Nano.
+
+The real issue is likely `gvfs-gphoto2-volume-monitor` holding up the camera storage. On Raspbian OS, one would need to kill `gvfs-gphoto2-volume-monitor` before connecting to the camera. This is done automatically in the `server3.py` code.
 
 ## Automatically start the server on start up.
-Run the startup script by adding the following line to `/etc/rc.local`:
+On the Raspberry Pi (etc.) controling the camera (i.e., the server), run the startup script by adding the following line to `/etc/rc.local`:
  `sudo bash /home/peer/Desktop/MultiCamCui/Documents/startup.sh &`
 The directory should be changed according to the directory of the project. 
 See `./etc/rc.local` in the project directory for example. ` /etc/rc.local` needs to be set to execuatble:
 `sudo chmod -x /etc/rc.local`.
-
-*****
-
+## Run the client code to control the cameras remotely.
+To trigger camera events, run the `client2.py` and put in instructions as prompted on any machine. In `client2.py`, the IP and the names of the servers need to be specified. 
+***** 
 
 # How to use the sample app by Canon
  1.Connect the camera to your PC with a USB cable.
