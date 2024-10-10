@@ -85,9 +85,9 @@ while True:
                 msgStr = "Stopped and saved"
             c.sendall(msgStr.encode())
         elif "WIPE" in instr:
-            result = format_card()
+            result = cc.format_card()
             if result.stderr or "ERROR" in result.stdout:
-		        msgStr = result.stderr + result.stdout
+            msgStr = result.stderr + result.stdout
             else:
                 msgStr = "All data wiped"
                 c.sendall(msgStr.encode())
