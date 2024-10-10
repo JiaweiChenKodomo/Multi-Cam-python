@@ -10,9 +10,15 @@ import socket
 import time
 from concurrent.futures import ThreadPoolExecutor
 
-port = 5000
+########################################
+########Change these###################
 serverIPLst = ['192.168.2.19', '192.168.2.20', '192.168.2.21']
 camNameLST = ['Cam1', 'Cam2', 'Cam3']
+#camNameLST = ['South', 'North', 'East']
+
+########################################
+
+port = 5000
 
 def decode_config_message(msg_bit):
     """Decode and remove all non-ASCII char's."""
@@ -61,8 +67,8 @@ def handle_server_command(serverIP, camName, instr):
         print(f"Error connecting to {serverIP}:{port} - {e}")
 
 while True:
-    instr = input("Type 'START' to start all recordings. 'STOP saveFileName' to stop and save file to the saveFileName. 'TAKE saveFileName' to take one shot and save file. CANCEL to terminate program. \n")
-    if "START" in instr or "STOP" in instr or "TAKE" in instr:
+    instr = input("Type 'START' to start all recordings. 'STOP saveFileName' to stop and save file to the saveFileName. 'TAKE saveFileName' to take one shot and save file. 'WIPE' to erase all data. 'CANCEL' to terminate program. \n")
+    if "START" in instr or "STOP" in instr or "TAKE" in instr or "WIPE" in instr:
         with ThreadPoolExecutor(max_workers=len(serverIPLst)) as executor:
             futures = [executor.submit(handle_server_command, serverIP, camName, instr) for serverIP, camName in zip(serverIPLst, camNameLST)]
             for future in futures:
