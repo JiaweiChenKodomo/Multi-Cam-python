@@ -49,7 +49,7 @@ def receive_data(server_socket):
     return flag
 
 while True:
-    instr = input("Type 'START' to start all recordings. 'STOP saveFileName' to stop and save file to the saveFileName. 'TAKE saveFileName' to take one shot and save file. CANCEL to terminate program. \n")
+    instr = input("Type 'START' to start all recordings. 'STOP saveFileName' to stop and save file to the saveFileName. 'TAKE saveFileName' to take one shot and save file. WIPE to erase all data. CANCEL to terminate program. \n")
     if "START" in instr or "STOP" in instr or "TAKE" in instr:
         for serverIP, camName in zip(serverIPLst, camNameLST):
             try:

@@ -86,14 +86,14 @@ int main(int argc, char* argv[])
 					err = EdsGetChildCount(cameraList, &count);
 					if (count == 0)
 					{
-						std::cout << "Cannot detect any camera" << std::endl;
-						pause_return();
+						std::cout << "ERROR: Cannot detect any camera" << std::endl;
+						//pause_return();
 						exit(EXIT_FAILURE);
 					}
 					else if (count > 30)
 					{
-						std::cout << "Too many cameras detected" << std::endl;
-						pause_return();
+						std::cout << "ERROR: Too many cameras detected" << std::endl;
+						//pause_return();
 						exit(EXIT_FAILURE);
 					}
 					std::cout << count << "cameras detected." << std::endl;
@@ -113,8 +113,8 @@ int main(int argc, char* argv[])
 						err = EdsGetDeviceInfo(camera, &deviceInfo);
 						if (err == EDS_ERR_OK && camera == NULL)
 						{
-							std::cout << "Camera is not found." << std::endl;
-							pause_return();
+							std::cout << "ERROR: Camera is not found." << std::endl;
+							//pause_return();
 							exit(EXIT_FAILURE);
 						}
 						std::cout << "[" << i + 1 << "]\t" << deviceInfo.szDeviceDescription << std::endl;
@@ -796,7 +796,7 @@ int main(int argc, char* argv[])
 					}
 					if (pause_flg)
 						std::cout << "Error with taking photo." << std::endl;
-					clr_screen();
+					//clr_screen();
 					std::cout << "Took a photo." << std::endl;
 					break;
 				}
@@ -804,7 +804,7 @@ int main(int argc, char* argv[])
 				{
 					for (i = 0; i < _openedCamerasArray.size(); i++)
 						_openedCamerasArray[i]->PressShutter(kEdsCameraCommand_ShutterButton_Halfway);
-					clr_screen();
+					//clr_screen();
 					std::cout << "Shutter button half pressed." << std::endl;
 					break;
 				}
@@ -812,7 +812,7 @@ int main(int argc, char* argv[])
 				{
 					for (i = 0; i < _openedCamerasArray.size(); i++)
 						_openedCamerasArray[i]->PressShutter(kEdsCameraCommand_ShutterButton_Completely);
-					clr_screen();
+					//clr_screen();
 					std::cout << "Shutter button completely pressed." << std::endl;
 					break;
 				}
@@ -821,7 +821,7 @@ int main(int argc, char* argv[])
 				{
 					for (i = 0; i < _openedCamerasArray.size(); i++)
 						_openedCamerasArray[i]->PressShutter(kEdsCameraCommand_ShutterButton_OFF);
-					clr_screen();
+					//clr_screen();
 					std::cout << "Shutter button release." << std::endl;
 					break;
 				}
@@ -829,7 +829,7 @@ int main(int argc, char* argv[])
 				else if (instrNo == 30)
 				{
 					DownloadImageAll(_openedCamerasArray);
-					clr_screen();
+					//clr_screen();
 					std::cout << "Download all files." << std::endl;
 					break;
 				}
@@ -861,7 +861,7 @@ int main(int argc, char* argv[])
 						_openedCamerasArray[i]->RecStart();
 					}
 
-					clr_screen();
+					//clr_screen();
 					std::cout << "Movie recording starts." << std::endl;
 					break;
 				}
@@ -872,7 +872,7 @@ int main(int argc, char* argv[])
 					{
 						_openedCamerasArray[i]->RecEnd();
 					}
-					clr_screen();
+					//clr_screen();
 					std::cout << "Movie recording ends." << std::endl;
 					break;
 				}
@@ -884,15 +884,15 @@ int main(int argc, char* argv[])
 						_openedCamerasArray[i]->DownloadEvfCommand();
 					}
 
-					clr_screen();
-					std::cout << "Movie recording ends." << std::endl;
+					//clr_screen();
+					std::cout << "Download EVF image." << std::endl;
 					break;
 				}
 				// other
 				else
 				{
-					clr_screen();
-					std::cout << "Commandline input not implemented yet." << std::endl;
+					//clr_screen();
+					std::cout << "ERROR Commandline input not implemented yet." << std::endl;
 					break;
 				}
 			}

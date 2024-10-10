@@ -60,22 +60,37 @@ while True:
             kill_gvfs = False
         
         if "START" in instr:
-            timeStr = cc.format_start_recording()
-            msgStr = "Start recording at " + timeStr
+            timeStr = cc.focus_start_recording_loud()
+            if "ERROR" in timeStr:
+                msgStr = timeStr
+            else:
+                msgStr = "Start recording at " + timeStr
             c.sendall(msgStr.encode())
         elif "TAKE" in instr:
-            cc.take_one_shot()
-            newFileName = instr[5:]
-            timeStr = cc.get_time_tag()
-            cc.img_rename(newFileName, timeStr[0:19])
-            msgStr = "Shot taken"
-            c.sendall(msgStr.encode())
+            result = cc.take_one_shot()
+            if "ERROR" in result:
+                msgStr = result
+            else: 
+                newFileName = instr[5:]
+                timeStr = cc.get_time_tag()
+                result = cc.img_rename(newFileName, timeStr[0:19])
+                msgStr = result + " shot(s) taken"
+                c.sendall(msgStr.encode())
         elif "STOP" in instr:
             newFileName = instr[5:]
             outCode = cc.stop_recording_save_rename(newFileName, timeStr)
-            if outCode == 0:
+            if "ERROR" in outCode:
+                msgStr = outCode
+            else:
                 msgStr = "Stopped and saved"
             c.sendall(msgStr.encode())
+        elif "WIPE" in instr:
+            result = format_card()
+            if result.stderr or "ERROR" in result.stdout:
+		        msgStr = result.stderr + result.stdout
+            else:
+                msgStr = "All data wiped"
+                c.sendall(msgStr.encode())
         else:
             msgStr = "Unknown command"
             c.sendall(msgStr.encode())
