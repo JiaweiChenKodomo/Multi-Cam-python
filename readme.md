@@ -80,10 +80,11 @@ The real issue is likely `gvfs-gphoto2-volume-monitor` holding up the camera sto
 
 ## Automatically start the server on start up.
 On the Raspberry Pi (etc.) controling the camera (i.e., the server), run the startup script by adding the following line to `/etc/rc.local`:
- `sudo bash /home/peer/Desktop/MultiCamCui/Documents/startup.sh &`
-The directory should be changed according to the directory of the project. 
+ `sudo bash /home/peer/Desktop/MultiCamCui/Documents/startup.sh  > /tmp/basherr.log 2>&1 &`
+The directory should be changed according to the directory of the project as well as the type of the camera used. 
 See `./etc/rc.local` in the project directory for example. ` /etc/rc.local` needs to be set to execuatble:
-`sudo chmod -x /etc/rc.local`.
+`sudo chmod +x /etc/rc.local`. Also make sure system service is enabled with `rc.local` as suggested by [this post](https://www.linuxbabe.com/linux-server/how-to-enable-etcrc-local-with-systemd).
+
 ## Run the client code to control the cameras remotely.
 To trigger camera events, run the `client2.py` and put in instructions as prompted on any machine. In `client2.py`, the IP and the names of the servers need to be specified. 
 ***** 

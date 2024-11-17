@@ -17,5 +17,7 @@ if [ "$_IP" ]; then
   printf "My IP address is %s\n" "$_IP"
 fi
 sudo bash /home/peer415/Documents/startup.sh &
+
+
  
 exit 0
